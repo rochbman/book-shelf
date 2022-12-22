@@ -28,6 +28,7 @@ body{
     border-style:outset;
     border-width: 10px;
     border-color: brown;
+    margin-bottom: 200px;
 }
 
 ul{
@@ -64,12 +65,12 @@ button{
 
 .yourBook{
     display: flex;
+    flex: wrap;
     align-content: center;
     justify-content: center;
     background-color:antiquewhite;
     padding: 25px;
     width: 100%;
-    /* margin: 10px; */
     border-style:ridge;
     border-color: darkblue;
     border-radius: 10px;
@@ -82,5 +83,6 @@ button{
     flex:wrap;
     align-content: center;
     justify-content: center;
+    margin: 25px;
 }
 
