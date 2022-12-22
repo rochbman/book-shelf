@@ -1,0 +1,86 @@
+body{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    padding: 25px;
+    background-color: mediumaquamarine;
+}
+
+.title{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.title2{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background-color: saddlebrown;
+    border-radius: 10px;
+    border-style:outset;
+    border-width: 10px;
+    border-color: brown;
+}
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: blue;
+    height: 200px;
+    width: 150px;
+    margin: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border-right-style: outset;
+    border-right-color:antiquewhite ;
+    border-left-style: groove;
+    border-left-color:darkblue;
+    border-left-width: 5px;
+}
+
+.heading{
+    display: flex;
+    align-content: center;
+    justify-content:center;
+    flex-direction: column;
+}
+
+button{
+    margin: 10px;
+    background-color:antiquewhite;
+    border-style: ridge;
+    border-radius: 10px;
+    border-color: darkblue;
+}
+
+.yourBook{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color:antiquewhite;
+    padding: 25px;
+    width: 100%;
+    /* margin: 10px; */
+    border-style:ridge;
+    border-color: darkblue;
+    border-radius: 10px;
+    bottom: 0;
+    position: fixed;
+}
+
+.bookInfo{
+    display: flex;
+    flex:wrap;
+    align-content: center;
+    justify-content: center;
+}
+
