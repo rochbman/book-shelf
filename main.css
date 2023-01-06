@@ -31,7 +31,7 @@ body{
     margin-bottom: 200px;
 }
 
-ul{
+li{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -84,5 +84,13 @@ button{
     align-content: center;
     justify-content: center;
     margin: 25px;
+}
+
+#fav{
+    display: none;
+}
+#top{
+    background-color: antiquewhite;
+    width: 100%;
 }
 

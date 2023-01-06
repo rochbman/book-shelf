@@ -5,14 +5,37 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
+        <nav id="navBar">
+            <div id="top">
+                <button id="allBooks"><h1 >all books</h1></button>
+                <button id="favList"><h1 >fav books</h1></button>
+                <button id="title"><h1 >alpha by title</h1></button>
+                <button id="author"><h1 >alpha by author</h1></button>
+                <div class="form-container">
+                    <form class="form">
+                        <input id="search" type="text" class="input" placeholder="search..."/>
+                        <button id="clear" class="clear-results">clear</button>
+                    </form>
+                    <div class="results-container">
+                        
+                        <ul class ="results-list" id="list">
+                 
+                        </ul>
+                     </div>
+      
+          </div>
+
+            </div>
+        </nav>
         <div class="heading">
             <h1 class="title">Welcome to Roch's Bookshelf</h1>
             <h2 class="title2">Please Choose a Book to see more information</h2>
-            <button><h3>Click here to add a book and help us expand our library</h3></button>
+            <button id="add"><h3>Click here to add a book and help us expand our library</h3></button>
         </div>
         
         <div class="main">
             <div class="yourBook"><h3 class="bookInfo">information about the book you choose will diplay here</h3>
+                <button id="fav">favorite</button>
             </div>
         </div>
         <script src="book-data.js" type="module"></script>
