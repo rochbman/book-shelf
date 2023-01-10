@@ -96,51 +96,51 @@ class Bookshelf{
 
         // trying to sort by title and author need to find out how to reference both properly here to make these work
 
-        titleSort.addEventListener('click', function(){
-            document.querySelectorAll("li").forEach(el => el.remove());
-            this.bookArr.sort(function(a, b) {
-                if (a < b) {
+        // titleSort.addEventListener('click', function(){
+        //     document.querySelectorAll("li").forEach(el => el.remove());
+        //     this.bookArr.sort(function(a, b) {
+        //         if (a < b) {
                   
-                  return -1;
-                }
-                if (a > b) {
+        //           return -1;
+        //         }
+        //         if (a > b) {
                   
-                  return 1
-                }
-                return 0
+        //           return 1
+        //         }
+        //         return 0
                 
-              })
-              console.log(bookArr);
-            //   const sortedBs= new Bookshelf(bookArr);
+        //       })
+        //       console.log(bookArr);
+        //     //   const sortedBs= new Bookshelf(bookArr);
               
-            //   sortedBs.render(bookArr);
-            //   sortedBs.clickclack(bookArr);
+        //     //   sortedBs.render(bookArr);
+        //     //   sortedBs.clickclack(bookArr);
               
 
-        })
+        // })
 
-        authorSort.addEventListener('click', function(){
-            document.querySelectorAll("li").forEach(el => el.remove());
-            this.bookArr.sort(function(a, b) {
-                if (a < b) {
+        // authorSort.addEventListener('click', function(){
+        //     document.querySelectorAll("li").forEach(el => el.remove());
+        //     this.bookArr.sort(function(a, b) {
+        //         if (a < b) {
                   
-                  return -1;
-                }
-                if (a > b) {
+        //           return -1;
+        //         }
+        //         if (a > b) {
                   
-                  return 1
-                }
-                return 0
+        //           return 1
+        //         }
+        //         return 0
                 
-              })
-              console.log(this.bookArr);
-            //   const sortedBs= new Bookshelf(bookData);
+        //       })
+        //       console.log(this.bookArr);
+        //     //   const sortedBs= new Bookshelf(bookData);
               
-            //   sortedBs.render(bookData);
-            //   sortedBs.clickclack(bookData);
+        //     //   sortedBs.render(bookData);
+        //     //   sortedBs.clickclack(bookData);
               
 
-        })
+        // })
 
         searchInput.addEventListener("input", (e) => {
             let value = e.target.value
@@ -169,7 +169,7 @@ class Bookshelf{
         
                 // appending the result item to the list
                 list.appendChild(resultItem)
-            }
+            }  
         }
 
         function clearList(){
