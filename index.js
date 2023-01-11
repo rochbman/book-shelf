@@ -4,9 +4,13 @@ import { bookData } from "./book-data.js";
 let main =document.querySelector(".main")
 let ul;
 let bookinfo = document.querySelector(".bookInfo");
+let commentButt = document.querySelector("#comment");
 let b;
 let button = document.querySelector('#add');
 let favButt = document.querySelector('#fav');
+
+let pageButt =document.querySelector('#page');
+let infodis= document.querySelector('.yourBook')
 let favList = document.querySelector('#favList');
 let allBooks = document.querySelector('#allBooks');
 let titleSort = document.querySelector('#title');
@@ -15,7 +19,12 @@ let favArr =[];
 
 const searchInput = document.querySelector('.input');
 const clearButton = document.querySelector('#clear');
-const list = document.querySelector('#list')
+const list = document.querySelector('#list');
+
+
+let comBox = document.querySelector('#comment-box');
+let post= document.getElementById("post");
+let uno = document.querySelector('#unordered');
 
 //bookshelf class set up
 
@@ -35,6 +44,7 @@ class Bookshelf{
            // add a class name of i to equal the index of that book in the book array so i can access the book obj with its class name
 
             ul.id=`${bookcount}`;
+            ul.className='book'
            // diplays book title and author for each book
             ul.innerHTML=obj.title+" by: " +obj.author[0];
             bookcount++ 
@@ -44,13 +54,24 @@ class Bookshelf{
     //adds event listener to each ul created above on click each books information will be displayed 
 
     clickclack(){
+        
        
         for(let i=0; i<this.bookArr.length;i++){
+            bookData[i].comments=[];
+            
             let u=document.getElementById(`${i}`);
             u.addEventListener('click',function(){
+                document.querySelectorAll(".comm").forEach(el => el.remove());
+                // comDiv.style.display='none';
                 bookinfo.innerHTML=`Your book is ${bookData[i].title} by ${bookData[i].author} it is writen in ${bookData[i].language}. This book's subjects include' ${bookData[i].subject} `;
-                //make favorite button apper when a book is selected
+
                 
+
+                comBox.style.display="none";
+                post.style.display="none";
+                uno.style.display="none";
+                //make favorite button apper when a book is selected
+                infodis.style.display='block';
                 favButt.style.display='block';
 
                 // give button listener to push that books obj into an array of favorite books
@@ -66,7 +87,57 @@ class Bookshelf{
                     
 
                 })
+                
+                commentButt.addEventListener('click',function commentButtclick(){
+                    commentButt.removeEventListener('click', commentButtclick);
+                   
+                    document.querySelectorAll(".comm").forEach(el => el.remove());
+                    comBox.style.display="block";
+                    post.style.display="block";
+                    uno.style.display="block";
+                    
+                    bookData[i].comments.forEach((string)=>{
+                        let li = document.createElement("li");
+                        let text = document.createTextNode(string);
+                        li.className='comm';
+                        li.appendChild(text);
+                        document.getElementById("unordered").appendChild(li);
+
+                       
+                        
+                        
+
+                    })
+                    post.addEventListener("click", function postClick (){
+                        post.removeEventListener('click', postClick)
+                        document.querySelectorAll(".comm").forEach(el => el.remove());
+                        let commentBoxValue= document.getElementById("comment-box").value;
+                        bookData[i].comments.push(commentBoxValue)
+                        bookData[i].comments.forEach((string)=>{
+                            let li = document.createElement("li");
+                            let text = document.createTextNode(string);
+                            li.className='comm';
+                            li.appendChild(text);
+                            document.getElementById("unordered").appendChild(li);
+    
+                        })
+    
+                        
+                        
+                        
+     
+                        
+     
+                    });
+                
+
+
+                })
+                
+                
             })
+            
+            
         } 
 
         //add listener to fav books button to clear bookshelf and diplay only users favorited books
@@ -77,6 +148,7 @@ class Bookshelf{
             // console.log(favArr)
             favShelf.render(favArr)
             favShelf.clickclack(favArr)
+            infodis.style.display='none';
             
 
         })
@@ -90,6 +162,7 @@ class Bookshelf{
             // console.log(bookData);
             yourBS.render(bookData);
             yourBS.clickclack(bookData);
+            infodis.style.display='none';
             
 
         })
@@ -193,14 +266,24 @@ class Book{
         this.language=language;
         this.subject=subject;
         this.title=title;
+        this.comments=[];
+        
     } 
 }
 
 //create new bookshelf the render all books and add the event listeners
 
-let bs= new Bookshelf(bookData)
-bs.render(bookData)
-bs.clickclack()
+document.addEventListener("DOMContentLoaded", function() {
+    let bs= new Bookshelf(bookData)
+    bs.render(bookData)
+    bs.clickclack()
+
+});
+
+
+
+
+
 
 
 // collect info on book the user wants to obj and push  the new book into book data and render a new collection of books 
@@ -237,3 +320,4 @@ button.addEventListener('click',function(){
     yourBS.render(bookData);
     yourBS.clickclack(bookData);
 });
+

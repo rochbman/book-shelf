@@ -4,6 +4,7 @@ body{
     margin:0;
     padding: 25px;
     background-color: mediumaquamarine;
+    margin-top: 150px;
 }
 
 .title{
@@ -31,7 +32,7 @@ body{
     margin-bottom: 200px;
 }
 
-li{
+.book{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -76,6 +77,7 @@ button{
     border-radius: 10px;
     bottom: 0;
     position: fixed;
+    display: none;
 }
 
 .bookInfo{
@@ -84,6 +86,8 @@ button{
     align-content: center;
     justify-content: center;
     margin: 25px;
+    
+    
 }
 
 #fav{
@@ -92,5 +96,54 @@ button{
 #top{
     background-color: antiquewhite;
     width: 100%;
+    border-color: darkblue;
+    border-style:ridge;
+    border-left: 0;
 }
 
+#navBar{
+    width:100%;
+    margin: 0;
+    padding:0;
+    position: fixed;
+    top:0;
+    left:0;
+}
+a{
+    text-decoration: none;
+}
+
+.navButt{
+    
+    height:48px;
+
+}
+
+#aboutpara{
+    display: flex;
+    flex: wrap;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    margin: 20px;
+    padding: 20px;
+    border-style: ridge ;
+    border-color: darkblue;
+    border-radius: 10px;
+
+}
+/* #comDiv{
+    display: none;
+} */
+#comment-box{
+    display: none;
+}
+
+#post{
+    display: none;
+}
+
+#unordered{
+    display: none;
+}
