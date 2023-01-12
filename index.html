@@ -4,7 +4,7 @@
         <title>Roch's Bookshelf</title>
         <link rel="stylesheet" href="main.css">
     </head>
-    <body >
+    <body>
         <nav id="navBar">
             <div id="top">
                 <button class="navButt" id="allBooks"><p>all books</p></button>
@@ -14,21 +14,6 @@
                 <button class="navButt" id="home"><a href="index.html">home</a></button>
                 <button class="navButt" id="about"><a href="about.html">about</a></button>
                 <button class="navButt" id="contact"><a href="contact.html">contact</a></button>
-                <div class="form-container">
-                    <form class="form">
-                        <input id="search" type="text" class="input" placeholder="search..."/>
-                        <button id="clear" class="clear-results">clear</button>
-                    </form>
-                  
-                    <div class="results-container">
-                        
-                        <ul class ="results-list" id="list">
-                 
-                        </ul>
-                    </div>
-      
-                </div>
-
             </div>
         </nav>
         <div class="heading">
@@ -38,14 +23,21 @@
         </div>
         
         <div class="main">
-            <div class="yourBook"><p class="bookInfo">information about the book you choose will diplay here</p>
-                <button id="fav">favorite</button>
-                <button id="comment"><p>Comments</p></button>
+            
+            <div class="yourBook">
+                
+                <p class="bookInfo">information about the book you choose will diplay here</p>
+                <div id="yourBook-button">
+                    <button id="fav">favorite</button>
+                    <button id="close">Close Book</button>
+                    <button id="comment"><p>Comments</p></button>
+                </div>
+                
                 
                   
                 
                 <div id="commDiv">
-                    <input type="text" id="comment-box" placeholder="Enter comment">
+                    <input type="text" id="comment-box" placeholder="Enter comment with less than 280 char" maxlength="280">
                     <button id="post">Post</button>
                     <ul id="unordered">
                        

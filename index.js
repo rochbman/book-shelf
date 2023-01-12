@@ -8,6 +8,7 @@ let commentButt = document.querySelector("#comment");
 let b;
 let button = document.querySelector('#add');
 let favButt = document.querySelector('#fav');
+let close = document.querySelector('#close')
 
 let pageButt =document.querySelector('#page');
 let infodis= document.querySelector('.yourBook')
@@ -16,15 +17,22 @@ let allBooks = document.querySelector('#allBooks');
 let titleSort = document.querySelector('#title');
 let authorSort = document.querySelector('#author');
 let favArr =[];
+let currBook ;
+let currBook2;
 
 const searchInput = document.querySelector('.input');
 const clearButton = document.querySelector('#clear');
 const list = document.querySelector('#list');
+let post= document.getElementById("post");
 
 
 let comBox = document.querySelector('#comment-box');
-let post= document.getElementById("post");
 let uno = document.querySelector('#unordered');
+
+
+
+
+
 
 //bookshelf class set up
 
@@ -54,16 +62,61 @@ class Bookshelf{
     //adds event listener to each ul created above on click each books information will be displayed 
 
     clickclack(){
+        bookData.forEach((obj)=>obj.comments=[])
         
        
         for(let i=0; i<this.bookArr.length;i++){
-            bookData[i].comments=[];
+            
+            function postClick (){
+                // post.removeEventListener('click', postClick)
+    
+                document.querySelectorAll(".comm").forEach(el => el.remove());
+                let commentBoxValue= comBox.value;
+                currBook2.push(commentBoxValue)
+                console.log(currBook2)
+                currBook2.forEach((string)=>{
+                    let li = document.createElement("li");
+                    let text = document.createTextNode(string);
+                    li.className='comm';
+                    li.appendChild(text);
+                    document.getElementById("unordered").appendChild(li);
+                })
+                
+            }
+
+            function commentButtclick(){
+                let post= document.getElementById("post");
+                 
+                console.log(currBook2)
+               
+                document.querySelectorAll(".comm").forEach(el => el.remove());
+                comBox.style.display="block";
+                post.style.display="block";
+                uno.style.display="block";
+                
+                currBook2. forEach((string)=>{
+                    let li = document.createElement("li");
+                    let text = document.createTextNode(string);
+                    li.className='comm';
+                    li.appendChild(text);
+                    document.getElementById("unordered").appendChild(li);
+                })
+                
+                post.addEventListener("click",postClick );
+            }
+
+            
             
             let u=document.getElementById(`${i}`);
             u.addEventListener('click',function(){
+                currBook=bookData[i];
+                currBook2=bookData[i].comments;
                 document.querySelectorAll(".comm").forEach(el => el.remove());
-                // comDiv.style.display='none';
                 bookinfo.innerHTML=`Your book is ${bookData[i].title} by ${bookData[i].author} it is writen in ${bookData[i].language}. This book's subjects include' ${bookData[i].subject} `;
+                
+                commentButt.removeEventListener('click', commentButtclick);
+                post.removeEventListener('click', postClick);
+                
 
                 
 
@@ -75,8 +128,12 @@ class Bookshelf{
                 favButt.style.display='block';
 
                 // give button listener to push that books obj into an array of favorite books
-                favButt.addEventListener('click',function(){
-                    favArr.push(bookData[i]);
+                favButt.addEventListener('click', function favButtClick(){
+                    favButt.removeEventListener('click', favButtClick)
+                    favArr.push(currBook);
+                    console.log(currBook)
+                    console.log(favArr)
+                    currBook=null;
                     //sort and filter to make sure the are no dups
                     favArr.sort()
                     let filtered= favArr.filter(function(item, pos) {
@@ -84,73 +141,27 @@ class Bookshelf{
                     })
                     favArr=filtered
                     favButt.style.display="none"
-                    
-
+    
                 })
                 
-                commentButt.addEventListener('click',function commentButtclick(){
-                    commentButt.removeEventListener('click', commentButtclick);
-                   
-                    document.querySelectorAll(".comm").forEach(el => el.remove());
-                    comBox.style.display="block";
-                    post.style.display="block";
-                    uno.style.display="block";
-                    
-                    bookData[i].comments.forEach((string)=>{
-                        let li = document.createElement("li");
-                        let text = document.createTextNode(string);
-                        li.className='comm';
-                        li.appendChild(text);
-                        document.getElementById("unordered").appendChild(li);
-
-                       
-                        
-                        
-
-                    })
-                    post.addEventListener("click", function postClick (){
-                        post.removeEventListener('click', postClick)
-                        document.querySelectorAll(".comm").forEach(el => el.remove());
-                        let commentBoxValue= document.getElementById("comment-box").value;
-                        bookData[i].comments.push(commentBoxValue)
-                        bookData[i].comments.forEach((string)=>{
-                            let li = document.createElement("li");
-                            let text = document.createTextNode(string);
-                            li.className='comm';
-                            li.appendChild(text);
-                            document.getElementById("unordered").appendChild(li);
-    
-                        })
-    
-                        
-                        
-                        
-     
-                        
-     
-                    });
+                commentButt.addEventListener('click', commentButtclick)
                 
-
-
-                })
-                
-                
-            })
-            
-            
+            })  
         } 
 
         //add listener to fav books button to clear bookshelf and diplay only users favorited books
         favList.addEventListener('click',function(){
-            
+            for(let i =0;i<favArr.length;i++){
+                if(favArr[i]===null){
+                    favArr.splice(i,i)   
+                }  
+            }
+            console.log(favArr)
             document.querySelectorAll("li").forEach(el => el.remove());
             let favShelf= new Bookshelf(favArr)
-            // console.log(favArr)
             favShelf.render(favArr)
             favShelf.clickclack(favArr)
             infodis.style.display='none';
-            
-
         })
 
         //add listener to all books button to display all books again and it will still include any books the user added
@@ -163,9 +174,46 @@ class Bookshelf{
             yourBS.render(bookData);
             yourBS.clickclack(bookData);
             infodis.style.display='none';
-            
-
         })
+        // collect info on book the user wants to obj and push  the new book into book data and render a new collection of books 
+
+        button.addEventListener('click',function(){
+
+        //user prompts to collect info
+
+            let yourTitle=prompt("What is the title of your book");
+            let yourAuthor=prompt("Who is the Author of your book");
+            let yourLang=prompt("What language is you book writen in");
+            let yourSub=prompt("What is the subject of this book");
+
+            //create a new book obj
+
+            let yourBook={
+                author: [yourAuthor],
+                language: yourLang,
+                subject: [
+                yourSub
+                ],
+                title: yourTitle,
+            }
+    
+            //delete all books
+
+            document.querySelectorAll("li").forEach(el => el.remove());
+            
+            //  adds all books again but new list has the users book included
+
+            bookData.push(yourBook);
+            const yourBS= new Bookshelf(bookData);
+            console.log(bookData);
+            yourBS.render(bookData);
+            yourBS.clickclack(bookData);
+        });
+
+        close.addEventListener('click',()=> infodis.style.display='none')
+
+
+        
 
         // trying to sort by title and author need to find out how to reference both properly here to make these work
 
@@ -214,110 +262,26 @@ class Bookshelf{
               
 
         // })
-
-        searchInput.addEventListener("input", (e) => {
-            let value = e.target.value
-        
-            if (value && value.trim().length > 0){
-                 value = value.trim().toLowerCase()
-        
-                //returning only the results of setList if the value of the search is included in the person's name
-                setList(bookData.filter(foundBook => {
-                    return foundBook.title.includes(value)
-                }))}})
-        function setList(results){
-
-            for (const foundBook of results){
-                // creating a li element for each result item
-                const resultItem = document.createElement('li')
-        
-                // adding a class to each item of the results
-                resultItem.classList.add('result-item')
-        
-                // grabbing the name of the current point of the loop and adding the name as the list item's text
-                const text = document.createTextNode(foundBook.name)
-        
-                // appending the text to the result item
-                resultItem.appendChild(text)
-        
-                // appending the result item to the list
-                list.appendChild(resultItem)
-            }  
-        }
-
-        function clearList(){
-            // looping through each child of the search results list and remove each child
-            while (list.firstChild){
-                list.removeChild(list.firstChild)
-            }
-        }
-
-        clearButton.addEventListener("click", () => {
-            clearList()
-        })
     }
 }
 
 //book class setup
 
 class Book{
-    constructor(author,language,subject,title){
+    constructor(author,language,subject,title,){
         this.author=author;
         this.language=language;
         this.subject=subject;
         this.title=title;
-        this.comments=[];
-        
+        this.comments=[];   
     } 
 }
 
 //create new bookshelf the render all books and add the event listeners
 
-document.addEventListener("DOMContentLoaded", function() {
+
+
     let bs= new Bookshelf(bookData)
     bs.render(bookData)
     bs.clickclack()
-
-});
-
-
-
-
-
-
-
-// collect info on book the user wants to obj and push  the new book into book data and render a new collection of books 
-
-button.addEventListener('click',function(){
-
-    //user prompts to collect info
-
-    let yourTitle=prompt("What is the title of your book");
-    let yourAuthor=prompt("Who is the Author of your book");
-    let yourLang=prompt("What language is you book writen in");
-    let yourSub=prompt("What is the subject of this book");
-
-    //create a new book obj
-
-    let yourBook={
-        author: [yourAuthor],
-        language: yourLang,
-        subject: [
-          yourSub
-        ],
-        title: yourTitle,
-    }
-    
-    //delete all books
-
-    document.querySelectorAll("li").forEach(el => el.remove());
-    
-    //  adds all books again but new list has the users book included
-
-    bookData.push(yourBook);
-    const yourBS= new Bookshelf(bookData);
-    console.log(bookData);
-    yourBS.render(bookData);
-    yourBS.clickclack(bookData);
-});
 
