@@ -4,21 +4,18 @@ body{
     margin:0;
     padding: 25px;
     background-color: mediumaquamarine;
-    margin-top: 150px;
+    /* margin-top: 150px; */
 }
-
 .title{
     display: flex;
     align-content: center;
     justify-content: center;
 }
-
 .title2{
     display: flex;
     align-content: center;
     justify-content: center;
 }
-
 .main{
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +28,6 @@ body{
     border-color: brown;
     margin-bottom: 200px;
 }
-
 .book{
     display: flex;
     flex-wrap: wrap;
@@ -48,14 +44,14 @@ body{
     border-left-color:darkblue;
     border-left-width: 5px;
 }
-
 .heading{
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     justify-content:center;
     flex-direction: column;
+    padding-top: 50px;
 }
-
 button{
     margin: 10px;
     background-color:antiquewhite;
@@ -63,7 +59,6 @@ button{
     border-radius: 10px;
     border-color: darkblue;
 }
-
 .yourBook{
     display: flex;
     flex: wrap;
@@ -83,17 +78,13 @@ button{
     display: flex;
     flex: wrap;
 }
-
 .bookInfo{
     display: flex;
     flex:wrap;
     align-content: center;
     justify-content: center;
     margin: 25px;
-    
-    
 }
-
 #fav{
     display: none;
 }
@@ -103,13 +94,11 @@ button{
     border-color: darkblue;
     border-style:ridge;
     border-left: 0;
-    height:80px;
+    min-height:80px;
     display: flex;
     align-content: center;
-    justify-content: center;
-
+    justify-content:space-between;
 }
-
 #navBar{
     width:100%;
     margin: 0;
@@ -118,18 +107,15 @@ button{
     top:0;
     left:0;
     display: flex;
-    
+    flex-wrap: wrap;
 }
 a{
     text-decoration: none;
+    color: black;
 }
-
-.navButt{
-    
+.navButt{   
     height:48px;
-
 }
-
 #aboutpara{
     display: flex;
     flex: wrap;
@@ -142,7 +128,6 @@ a{
     border-style: ridge ;
     border-color: darkblue;
     border-radius: 10px;
-
 }
 #links{
     display: flex;
@@ -153,11 +138,9 @@ img{
 #comment-box{
     display: none;
 }
-
 #post{
     display: none;
 }
-
 #unordered{
     display: none;
 }
@@ -168,8 +151,12 @@ img{
 .comm{
     list-style: none;
     text-decoration: none;
-    background-color: azure;
+    background-color:gainsboro;
     width: 250px;
-    width:fit-content;
-    
+    border-radius: 5px;
+    margin: 15px;
+    padding: 2px;   
+}
+#commDiv{
+    padding: 20px;
 }
