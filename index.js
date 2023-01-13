@@ -27,6 +27,45 @@ let uno = document.querySelector('#unordered');
 // establish a comment key value pair to each book so i can add comments to later. do it here so it will carry over if books are sorted or somthing
 
 bookData.forEach((obj)=>obj.comments=[])
+        // collect info on book the user wants to obj and push the new book into book data and render a new collection of books 
+
+        add.addEventListener('click',function addBook(){
+            
+
+            //user prompts to collect info
+        
+            let yourTitle=prompt("What is the title of your book");
+            let yourAuthor=prompt("Who is the Author of your book");
+            let yourLang=prompt("What language is you book writen in");
+            let yourSub=prompt("What is the subject of this book");
+            
+        
+            //create a new book obj
+        
+            let yourBook={
+                author: [yourAuthor],
+                language: yourLang,
+                subject: [
+                yourSub
+                ],
+                title: yourTitle,
+                comments:[] 
+            }
+            console.log(yourBook)
+            //delete all books
+        
+            document.querySelectorAll("li").forEach(el => el.remove());
+        
+            // clearEvents()
+            
+            //  adds all books again but new list has the users book included
+        
+            bookData.push(yourBook);
+            const yourBS= new Bookshelf(bookData);
+            console.log(bookData);
+            yourBS.render(bookData);
+            yourBS.clickclack(bookData);
+        });
 
 
 //bookshelf class set up
@@ -78,6 +117,7 @@ class Bookshelf{
         //function to make the comment box and comments appear put it up here so i can remove this function when a book is selected
 
         function commentButtclick(){
+            
             let post= document.getElementById("post");
              
             // console.log(currBook2)
@@ -194,52 +234,15 @@ class Bookshelf{
             favShelf.render(favArr)
             favShelf.clickclack(favArr)
             infodis.style.display='none';
+            
         })
 
-        // collect info on book the user wants to obj and push the new book into book data and render a new collection of books 
 
-        add.addEventListener('click',function(){
-
-            //user prompts to collect info
         
-            let yourTitle=prompt("What is the title of your book");
-            let yourAuthor=prompt("Who is the Author of your book");
-            let yourLang=prompt("What language is you book writen in");
-            let yourSub=prompt("What is the subject of this book");
-            
-        
-            //create a new book obj
-        
-            let yourBook={
-                author: [yourAuthor],
-                language: yourLang,
-                subject: [
-                yourSub
-                ],
-                title: yourTitle,
-                comments:[] 
-            }
-            console.log(yourBook)
-            //delete all books
-        
-            document.querySelectorAll("li").forEach(el => el.remove());
-        
-            clearEvents()
-            
-            //  adds all books again but new list has the users book included
-        
-            bookData.push(yourBook);
-            const yourBS= new Bookshelf(bookData);
-            console.log(bookData);
-            yourBS.render(bookData);
-            yourBS.clickclack(bookData);
-        });
-
         //add listener to all books button to display all books again and it will still include any books the user added
 
         allBooks.addEventListener('click',function(){
             clearEvents()
-
             document.querySelectorAll("li").forEach(el => el.remove());
             const yourBS= new Bookshelf(bookData);
             // console.log(bookData);
@@ -249,7 +252,7 @@ class Bookshelf{
         })
 
         
-
+        
         
 
         close.addEventListener('click',()=> infodis.style.display='none')
@@ -269,12 +272,7 @@ class Bookshelf{
         })
 
         authorSort.addEventListener('click', function(){
-            let all=document.querySelectorAll("li")
-            all.forEach(el => el.remove());
-            all.forEach((li)=>{
-                commentButt.removeEventListener('click', commentButtclick);
-                post.removeEventListener('click', postClick);
-            })
+            clearEvents()
             document.querySelectorAll("li").forEach(el => el.remove());
             let sortedBookData = bookData.sort((a, b) => (a.author < b.author) ? -1 : 1);
             console.log(sortedBookData);
@@ -306,4 +304,5 @@ class Book{
     let bs= new Bookshelf(bookData)
     bs.render(bookData)
     bs.clickclack()
+    
 
