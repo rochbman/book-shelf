@@ -27,45 +27,44 @@ let uno = document.querySelector('#unordered');
 // establish a comment key value pair to each book so i can add comments to later. do it here so it will carry over if books are sorted or somthing
 
 bookData.forEach((obj)=>obj.comments=[])
-        // collect info on book the user wants to obj and push the new book into book data and render a new collection of books 
 
-        add.addEventListener('click',function addBook(){
+// collect info on book the user wants to obj and push the new book into book data and render a new collection of books 
+add.addEventListener('click',function addBook(){
             
-
-            //user prompts to collect info
+    //user prompts to collect info
         
-            let yourTitle=prompt("What is the title of your book");
-            let yourAuthor=prompt("Who is the Author of your book");
-            let yourLang=prompt("What language is you book writen in");
-            let yourSub=prompt("What is the subject of this book");
+    let yourTitle=prompt("What is the title of your book");
+    let yourAuthor=prompt("Who is the Author of your book");
+    let yourLang=prompt("What language is you book writen in");
+    let yourSub=prompt("What is the subject of this book");
             
         
-            //create a new book obj
+    //create a new book obj
         
-            let yourBook={
-                author: [yourAuthor],
-                language: yourLang,
-                subject: [
-                yourSub
-                ],
-                title: yourTitle,
-                comments:[] 
-            }
-            console.log(yourBook)
-            //delete all books
+    let yourBook={
+        author: [yourAuthor],
+        language: yourLang,
+        subject: [
+        yourSub
+        ],
+        title: yourTitle,
+        comments:[] 
+    }
+    console.log(yourBook)
+    //delete all books
         
-            document.querySelectorAll("li").forEach(el => el.remove());
+    document.querySelectorAll("li").forEach(el => el.remove());
         
-            // clearEvents()
+    // clearEvents()
             
-            //  adds all books again but new list has the users book included
+    //  adds all books again but new list has the users book included
         
-            bookData.push(yourBook);
-            const yourBS= new Bookshelf(bookData);
-            console.log(bookData);
-            yourBS.render(bookData);
-            yourBS.clickclack(bookData);
-        });
+    bookData.push(yourBook);
+    const yourBS= new Bookshelf(bookData);
+    console.log(bookData);
+    yourBS.render(bookData);
+    yourBS.clickclack(bookData);
+});
 
 
 //bookshelf class set up
@@ -255,7 +254,7 @@ class Bookshelf{
         
         
 
-        close.addEventListener('click',()=> infodis.style.display='none')
+        close.addEventListener('click',()=> infodis.style.display='none');
 
         // sort by title  
 
@@ -299,10 +298,10 @@ class Book{
     } 
 }
 
-    //create new bookshelf the render all books and add the event listeners
+//create new bookshelf the render all books and add the event listeners
 
-    let bs= new Bookshelf(bookData)
-    bs.render(bookData)
-    bs.clickclack()
+let bs= new Bookshelf(bookData)
+bs.render(bookData)
+bs.clickclack()
     
 
